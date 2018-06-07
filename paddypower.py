@@ -37,4 +37,19 @@ for menu__section in menu__sections:
                     if ribbon__item.text.lower() == category:
                         print(ribbon__item.text)
                         ribbon__item.click()
-                        break
+                        accordion__headers=WebDriverWait(driver, 20).until(
+                            EC.presence_of_all_elements_located(
+                                (By.CLASS_NAME, "accordion__header"))
+                        )
+                        for h in accordion__headers:
+                            print(h.text)
+                            h.click()
+
+                        outright_items = WebDriverWait(driver, 20).until(
+                            EC.presence_of_all_elements_located(
+                                (By.CLASS_NAME, "outright-item"))
+                        )
+                        for outright_item in outright_items:
+                            print(outright_item.text)
+                        driver.quit()
+                        exit()
